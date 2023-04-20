@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:53:36 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/20 16:01:56 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/21 01:18:43 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,12 @@ void		split_buffer(char *buf, t_data *points);
 
 /* UTILS PARA LECTURA */
 char		*freestrjoin(char *buf, char *aux);
-void		get_color_new(char *buf, int *index, t_data point, char id);
+void		get_color_new(char *buf, int *index, t_data *point, char id);
 int			check_line_tam(char *aux);
 
 /* MANEJO DE LOS DATOS */
 void		draw_listpoints(t_data *points, int tam, int cont_lines);
+void		draw_single_point(t_data point);
 void		ft_bresenham(int x1, int y1, int x2, int y2);
 void		isometric(t_data	*points, int tam, int cont_lines);
 void		normalization(t_data *points, int tam, int cont_lines);

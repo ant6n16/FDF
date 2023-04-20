@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 21:07:25 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/20 16:01:44 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:35:57 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ void	get_data(int fd, char **buf, t_img *image)
 	while (aux != NULL)
 	{
 		if (tam != check_line_tam(aux))
-			ft_error("Map not valid (rows of different width...", 2, *buf, image);
+			ft_error("Map not valid (rows of different width)...", 2, *buf, image);
 		cont_lines++;
 		*buf = freestrjoin(*buf, aux);
 		aux = get_next_line(fd);
 	}
 	image->width = tam;
 	image->height = cont_lines;	
+	if (tam == 0 || cont_lines == 0)
+		ft_error("Map not valid: Dimensions wrong...", 2, *buf, image);
 }
 
 void	read_data(char **argv, char **buf, t_img *image)

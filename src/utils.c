@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 19:27:23 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/20 15:03:35 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:49:59 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_listpoints(t_data *points, int tam, int cont_lines)
 	index = -1;
 	while (++index < tam * cont_lines)
 	{
-		ft_printf("%d\n", index);
+		ft_printf("Index: %d\n", index);
 		ft_printf("Z: %d\n", points[index].z);
 		ft_printf("R: %d\n", points[index].r);
 		ft_printf("G: %d\n", points[index].g);
@@ -35,11 +35,13 @@ void	draw_listpoints(t_data *points, int tam, int cont_lines)
 	}
 }
 
-/* t_packet	fill_packet(t_data *points, t_img *image)
+void	draw_single_point(t_data point)
 {
-	t_packet	packet;
-
-	packet.list = points;
-	packet.size = image;
-	return (packet);
-} */
+	ft_printf("Z: %d\n", point.z);
+	ft_printf("R: %d\n", point.r);
+	ft_printf("G: %d\n", point.g);
+	ft_printf("B: %d\n", point.b);
+	ft_printf("T: %d\n", point.t);
+	ft_printf("Xiso: %d\n", point.xiso);
+	ft_printf("Yiso: %d\n\n", point.yiso);
+}
