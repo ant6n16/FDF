@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 21:07:25 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/20 15:41:42 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:01:44 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,16 @@ void	split_buffer(char *buf, t_data *points)
 	}
 }
 
-t_data	*provide_data(char **argv, t_img *image)
+t_packet	provide_data(char **argv)
 {
-	char	*buf;
-	t_data	*points;
+	char		*buf;
+	t_data		*points;
+	t_img		*image;
+	t_packet	packet;
 
+	image = (t_img *) ft_calloc(1, sizeof(t_img));
+	if (!image)
+		ft_error("Problems when allocating memory...", 0);
 	buf = ft_calloc(sizeof(char), 1);
 	if (!buf)
 		ft_error("Problems when allocating memory...", 1, image);
@@ -82,5 +87,8 @@ t_data	*provide_data(char **argv, t_img *image)
 	split_buffer(buf, points);
 	isometric(points, image->width, image->height);
 	normalization(points, image->width, image->height);
-	return (free(buf), points);
+	packet.points = points;
+	packet.width = image->width;
+	packet.height = image->height;
+	return (free(buf), free(image), packet);
 }
