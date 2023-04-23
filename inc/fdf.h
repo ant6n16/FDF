@@ -6,12 +6,15 @@
 /*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:53:36 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/21 01:18:43 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:54:47 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+# define WIDTH 1920
+# define HEIGHT 1024
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -41,9 +44,14 @@ typedef struct s_data
 
 typedef	struct s_packet
 {
-	t_data	*points;
-	int		width;
-	int		height;
+	t_data		*points;
+	int			width;
+	int			height;
+
+	/* NUEVOS */
+	mlx_image_t	*img;
+	mlx_image_t	*menu;
+	mlx_t		*mlx;
 }	t_packet;
 
 /* LEER LOS DATOS */
