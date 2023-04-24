@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_velazquez.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:34:11 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 13:46:28 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:47:14 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,22 @@ void	ft_velazquez(t_packet *pack)
 	{
 		ind2 = index;
 
+		aux = i;
+		if ((i + 1) % fdf->map_width != 0)
+		{
+			if (fdf->map[i].z < fdf->map[i + 1].z)
+				aux = i + 1;
+			bresenham(aux, coords(fdf->map[i].x_draw, fdf->map[i].y_draw), \
+			coords(fdf->map[i + 1].x_draw, fdf->map[i + 1].y_draw), fdf);
+		}
+		if (i / fdf->map_width != fdf->map_height - 1)
+		{
+			if (fdf->map[i].z < fdf->map[i + fdf->map_width].z)
+				aux = i + fdf->map_width;
+			bresenham(aux, coords(fdf->map[i].x_draw, fdf->map[i].y_draw), \
+			coords(fdf->map[i + fdf->map_width].x_draw, \
+			fdf->map[i + fdf->map_width].y_draw), fdf);
+		}
 
 
 
