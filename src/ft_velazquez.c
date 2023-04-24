@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:34:11 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 14:12:27 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 14:17:16 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	ft_bresenham(int location, t_space coords, t_packet *pack)
 
 void	ft_velazquez(t_packet *pack)
 {
-
 	int	index;
 	int	ind2;
 	int	tam;

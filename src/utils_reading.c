@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:05:55 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 13:24:48 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 14:16:09 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*freestrjoin(char *buf, char *aux)
 {
-	char *newbuf;
+	char	*newbuf;
 
 	newbuf = ft_strjoin(buf, aux);
 	free(buf);
@@ -37,7 +37,7 @@ int	check_line_tam(char *aux)
 	while (aux[index] != '\n' && aux[index] != '\0')
 	{
 		if ((aux[index] == ' ' && (ft_isdigit(aux[index + 1]))) \
-		 || (aux[index] == ' ' && (aux[index + 1] == '-')))
+		|| (aux[index] == ' ' && (aux[index + 1] == '-')))
 			tam++;
 		index++;
 	}
@@ -52,10 +52,8 @@ void	get_color_new(char *buf, int *index, t_data *point, char id)
 	color[0] = buf[*index];
 	color[1] = buf[*index + 1];
 	color[2] = 0;
-
 	color_num = ft_atoi_hex(color);
 	*index += 2;
-
 	if (id == 'r')
 		point->r = color_num;
 	if (id == 'g')
@@ -72,7 +70,6 @@ void	fill_color(char *buf, t_data *points, int *index, int index_table)
 	points[index_table].g = 140;
 	points[index_table].b = 32;
 	points[index_table].t = 255;
-
 	if (buf[*index] == ',' && buf[*index + 1] == '0' && buf[*index + 2] == 'x')
 	{
 		*index += 3;

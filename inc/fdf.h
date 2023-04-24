@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:53:36 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 14:07:25 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 14:14:49 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_space
 	int	y2;
 }	t_space;
 
-
 typedef struct s_img
 {
 	int		width;
@@ -51,7 +50,7 @@ typedef struct s_data
 	int		yiso;
 }	t_data;
 
-typedef	struct s_packet
+typedef struct s_packet
 {
 	t_data		*points;
 	int			width;
@@ -81,15 +80,12 @@ void		normalization(t_data *points, int tam, int cont_lines);
 void		fill_color(char *buf, t_data *points, int *index, int index_table);
 
 /* PARA DIBUJAR EN LA VENTANA */
-t_space	create_space(int x1, int y1, int x2, int y2);
-void	ft_bresenham(int location, t_space coords, t_packet *pack);
-void	ft_velazquez(t_packet *pack);
-
+t_space		create_space(int x1, int y1, int x2, int y2);
+void		ft_bresenham(int location, t_space coords, t_packet *pack);
+void		ft_velazquez(t_packet *pack);
 
 /* SISTEMA */
 void		ft_leaks(void);
 void		ft_error(char *prompt, int num_args, ...);
-
-// t_packet	fill_packet(t_data *points, t_img *image);
 
 #endif
