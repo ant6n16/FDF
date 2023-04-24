@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 21:07:25 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 14:15:19 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:32:13 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ t_packet	provide_data(char **argv)
 	packet.points = points;
 	packet.width = image->width;
 	packet.height = image->height;
+	calculate_window(&packet);
 	return (free(buf), free(image), packet);
 }

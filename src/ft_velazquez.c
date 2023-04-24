@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:34:11 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 14:17:16 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:36:15 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,42 +23,69 @@ t_space	create_space(int x1, int y1, int x2, int y2)
 	return (space);
 }
 
-void	ft_bresenham(int location, t_space coords, t_packet *pack)
+
+/* CAMBIAR TODO ESTO */
+
+typedef struct s_bresenham
 {
 	int	dx;
 	int	dy;
-	int	p;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
 	int	x;
 	int	y;
+}					t_bresenham;
 
-	dx = abs(coords.x2 - coords.x1);
-	dy = abs(coords.y2 - coords.y1);
-	p = 2 * dy - dx;
-	if (coords.x1 > coords.x2)
+void	ft_putrgba(int i, t_packet *pack, int j)
+{
+	pack->img->pixels[i] = pack->points[j].r;
+	pack->img->pixels[i + 1] = pack->points[j].g;
+	pack->img->pixels[i + 2] = pack->points[j].b;
+	pack->img->pixels[i + 3] = pack->points[j].t;
+}
+
+void	bresenham_aux(t_bresenham	*brshm)
+{
+	if (brshm->e2 > -brshm->dy)
 	{
-		x = coords.x2;
-		y = coords.y2;
-		coords.x2 = coords.x1;
+		brshm->err -= brshm->dy;
+		brshm->x += brshm->sx;
 	}
-	else
+	if (brshm->e2 < brshm->dx)
 	{
-		x = coords.x1;
-		y = coords.y1;
-	}
-	ft_printf("(%d,%d)", x, y); // OJO
-	while (x < coords.x2)
-	{
-		x++;
-		if (p < 0)
-			p += 2 * dy;
-		else
-		{
-			y++;
-			p += 2 * (dy - dx);
-		}
-		ft_printf(", (%d,%d)", x, y); // OJO
+		brshm->err += brshm->dx;
+		brshm->y += brshm->sy;
 	}
 }
+
+void	ft_bresenham(int location, t_space coords, t_packet *pack)
+{
+	t_bresenham	brshm;
+
+	brshm.dx = abs(coords.x2 - coords.x1);
+	brshm.dy = abs(coords.y2 - coords.y1);
+	if (coords.x1 < coords.x2)
+		brshm.sx = 1;
+	else
+		brshm.sx = -1;
+	if (coords.y1 < coords.y2)
+		brshm.sy = 1;
+	else
+		brshm.sy = -1;
+	brshm.err = brshm.dx - brshm.dy;
+	brshm.x = coords.x1;
+	brshm.y = coords.y1;
+	while (brshm.x != coords.x2 || brshm.y != coords.y2)
+	{
+		ft_putrgba((abs(brshm.x - 1) * 4) + \
+		(pack->img->width * abs(brshm.y - 1) * 4), pack, location);
+		brshm.e2 = 2 * brshm.err;
+		bresenham_aux(&brshm);
+	}
+}
+/* HASTA AQUI */
 
 void	ft_velazquez(t_packet *pack)
 {
@@ -66,30 +93,67 @@ void	ft_velazquez(t_packet *pack)
 	int	ind2;
 	int	tam;
 
-	tam = pack->width * pack->height;
-	ft_bzero(pack->img->pixels, tam);
+	tam = pack->img->width * pack->img->height;
+	ft_memset(pack->img->pixels, 0, tam * sizeof(int));
 	index = -1;
 	while(++index < tam)
 	{
 		ind2 = index;
 		if ((ind2 + 1) % pack->width != 0)
-		{
+		{ 
 			if (pack->points[index].z < pack->points[index + 1].z)
 				ind2 = index + 1;
-			ft_bresenham(ind2, create_space(pack->points[index].x_draw, \ 
-			pack->points[index].y_draw, pack->points[index + 1].x_draw, \
-			pack->points[index + 1].y_draw), pack);
+			ft_bresenham(ind2, create_space(pack->points[index].xiso, \
+			pack->points[index].yiso, pack->points[index + 1].xiso, pack->points[index + 1].yiso), pack);
 		}
 		if (index / pack->width != pack->height - 1)
 		{
 			if (pack->points[index].z < pack->points[index + pack->width].z)
 				ind2 = index + pack->width;
-			ft_bresenham(ind2, create_space(pack->points[index].x_draw, \ 
-			pack->points[index].y_draw, pack->points[index + \ 
-			pack->width].x_draw, pack->points[index + pack->width].y_draw), pack);
+			ft_bresenham(ind2, create_space(pack->points[index].xiso, \
+			 pack->points[index].yiso, pack->points[index + pack->width].xiso, pack->points[index + pack->width].yiso), pack);
 		}
 	}
 }
+
+
+// void	ft_bresenham(int location, t_space coords, t_packet *pack)
+// {
+// 	int	dx;
+// 	int	dy;
+// 	int	p;
+// 	int	x;
+// 	int	y;
+
+// 	dx = abs(coords.x2 - coords.x1);
+// 	dy = abs(coords.y2 - coords.y1);
+// 	p = 2 * dy - dx;
+// 	if (coords.x1 > coords.x2)
+// 	{
+// 		x = coords.x2;
+// 		y = coords.y2;
+// 		coords.x2 = coords.x1;
+// 	}
+// 	else
+// 	{
+// 		x = coords.x1;
+// 		y = coords.y1;
+// 	}
+// 	ft_printf("(%d,%d)", x, y); // OJO
+// 	while (x < coords.x2)
+// 	{
+// 		x++;
+// 		if (p < 0)
+// 			p += 2 * dy;
+// 		else
+// 		{
+// 			y++;
+// 			p += 2 * (dy - dx);
+// 		}
+// 		ft_printf(", (%d,%d)", x, y); // OJO
+// 	}
+// }
+
 
 
 /* CODIGO JAVI PARA PINTAR

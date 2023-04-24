@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:53:36 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 14:14:49 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:31:46 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_packet
 	t_data		*points;
 	int			width;
 	int			height;
+	int			wind_w;
+	int			wind_h;
 	mlx_image_t	*img;
 	mlx_image_t	*menu;
 	mlx_t		*mlx;
@@ -77,6 +79,7 @@ void		draw_listpoints(t_data *points, int tam, int cont_lines);
 void		draw_single_point(t_data point);
 void		isometric(t_data	*points, int tam, int cont_lines);
 void		normalization(t_data *points, int tam, int cont_lines);
+void		calculate_window(t_packet *pack);
 void		fill_color(char *buf, t_data *points, int *index, int index_table);
 
 /* PARA DIBUJAR EN LA VENTANA */
