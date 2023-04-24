@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:53:36 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 13:00:00 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:39:11 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ typedef	struct s_packet
 	t_data		*points;
 	int			width;
 	int			height;
-
-	/* NUEVOS */
 	mlx_image_t	*img;
 	mlx_image_t	*menu;
 	mlx_t		*mlx;
