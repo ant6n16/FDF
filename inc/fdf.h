@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:53:36 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/23 16:54:47 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:00:00 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef	struct s_packet
 }	t_packet;
 
 /* LEER LOS DATOS */
+char		*ft_substrmodif(char *file, int start, int size);
 void		get_data(int fd, char **buf, t_img *image);
 t_packet	provide_data(char **argv);
 void		read_data(char **argv, char **buf, t_img *image);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+         #
+#    By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 13:19:05 by lumorale          #+#    #+#              #
-#    Updated: 2023/04/23 17:37:38 by antdelga         ###   ########.fr        #
+#    Updated: 2023/04/24 12:31:34 by antdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,13 @@ CFLAGS			=	-Wall -Werror -Wextra
 RM				=	rm -f
 AR				=	ar -rcs
 
-SRCS			=	src/utils.c \
+SRCS			=	src/ft_error.c \
+					src/utils.c \
+					src/utils_reading.c \
 					src/draw.c \
 					src/data_reading.c \
-					src/utils_reading.c \
-					src/ft_error.c \
 					src/main.c \
+					
 
 #		COLORS		#
 CYELLOW			=\033[1;33m
@@ -39,8 +40,8 @@ LIBFT = libft/libft.a
 
 MLX_DIR = MLX42
 LIBMLXL = libmlx42.a
-LIBMLX = $(MLX_DIR)/libmlx42.a -ldl -lglfw3 -pthread -lm
-INC_MLX = -I$(MLX_DIR)/include/MLX42 -Iinclude -lglfw3 -L"/Users/$$USER/.brew/opt/glfw/lib/"
+LIBMLX = $(MLX_DIR)/libmlx42.a -ldl -lglfw -pthread -lm
+INC_MLX = -I$(MLX_DIR)/include/MLX42 -Iinclude -lglfw -L"/Users/$$USER/.brew/opt/glfw/lib/"
 
 INC = -Iinclude $(INC_LFT) $(INC_FTP) $(INC_GNL) $(INC_MLX)
 

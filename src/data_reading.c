@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   data_reading.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 21:07:25 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/20 18:35:57 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:30:53 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
+
+char	*ft_substrmodif(char *file, int start, int size)
+{
+	char	*nbr;
+	int		i;
+
+	nbr = ft_calloc((size), sizeof(char));
+	i = 0;
+	while (i < size)
+	{
+		nbr[i] = file[start + i];
+		i++;
+	}
+	return (nbr);
+}
 
 void	get_data(int fd, char **buf, t_img *image)
 {
@@ -29,10 +44,10 @@ void	get_data(int fd, char **buf, t_img *image)
 		*buf = freestrjoin(*buf, aux);
 		aux = get_next_line(fd);
 	}
-	image->width = tam;
-	image->height = cont_lines;	
 	if (tam == 0 || cont_lines == 0)
 		ft_error("Map not valid: Dimensions wrong...", 2, *buf, image);
+	image->width = tam;
+	image->height = cont_lines;	
 }
 
 void	read_data(char **argv, char **buf, t_img *image)
@@ -61,7 +76,7 @@ void	split_buffer(char *buf, t_data *points)
 		pivot = index;
 		while (ft_isdigit(buf[index]) || buf[index] == '-')
 			index++;
-		aux = ft_substr(buf, pivot, index - pivot);
+		aux = ft_substrmodif(buf, pivot, index - pivot);
 		points[++index_table].z = ft_atoi(aux);
 		free(aux);
 		fill_color(buf, points, &index, index_table);

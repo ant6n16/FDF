@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_reading.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:05:55 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/21 01:20:20 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:24:48 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int	check_line_tam(char *aux)
 
 	index = 0;
 	tam = 0;
+	if (aux[index] == '-' || ft_isdigit(aux[index]))
+	{
+		tam++;
+		index++;
+	}
 	while (aux[index] != '\n' && aux[index] != '\0')
 	{
 		if ((aux[index] == ' ' && (ft_isdigit(aux[index + 1]))) \
