@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_velazquez.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:34:11 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 13:47:14 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 14:12:27 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-void	ft_bresenham(int x1, int y1, int x2, int y2)
+t_space	create_space(int x1, int y1, int x2, int y2)
+{
+	t_space	space;
+
+	space.x1 = x1;
+	space.y1 = y1;
+	space.x2 = x2;
+	space.y2 = y2;
+	return (space);
+}
+
+void	ft_bresenham(int location, t_space coords, t_packet *pack)
 {
 	int	dx;
 	int	dy;
@@ -20,22 +31,22 @@ void	ft_bresenham(int x1, int y1, int x2, int y2)
 	int	x;
 	int	y;
 
-	dx = abs(x2 - x1);
-	dy = abs(y2 - y1);
+	dx = abs(coords.x2 - coords.x1);
+	dy = abs(coords.y2 - coords.y1);
 	p = 2 * dy - dx;
-	if (x1 > x2)
+	if (coords.x1 > coords.x2)
 	{
-		x = x2;
-		y = y2;
-		x2 = x1;
+		x = coords.x2;
+		y = coords.y2;
+		coords.x2 = coords.x1;
 	}
 	else
 	{
-		x = x1;
-		y = y1;
+		x = coords.x1;
+		y = coords.y1;
 	}
 	ft_printf("(%d,%d)", x, y); // OJO
-	while (x < x2)
+	while (x < coords.x2)
 	{
 		x++;
 		if (p < 0)
@@ -62,27 +73,22 @@ void	ft_velazquez(t_packet *pack)
 	while(++index < tam)
 	{
 		ind2 = index;
-
-		aux = i;
-		if ((i + 1) % fdf->map_width != 0)
+		if ((ind2 + 1) % pack->width != 0)
 		{
-			if (fdf->map[i].z < fdf->map[i + 1].z)
-				aux = i + 1;
-			bresenham(aux, coords(fdf->map[i].x_draw, fdf->map[i].y_draw), \
-			coords(fdf->map[i + 1].x_draw, fdf->map[i + 1].y_draw), fdf);
+			if (pack->points[index].z < pack->points[index + 1].z)
+				ind2 = index + 1;
+			ft_bresenham(ind2, create_space(pack->points[index].x_draw, \ 
+			pack->points[index].y_draw, pack->points[index + 1].x_draw, \
+			pack->points[index + 1].y_draw), pack);
 		}
-		if (i / fdf->map_width != fdf->map_height - 1)
+		if (index / pack->width != pack->height - 1)
 		{
-			if (fdf->map[i].z < fdf->map[i + fdf->map_width].z)
-				aux = i + fdf->map_width;
-			bresenham(aux, coords(fdf->map[i].x_draw, fdf->map[i].y_draw), \
-			coords(fdf->map[i + fdf->map_width].x_draw, \
-			fdf->map[i + fdf->map_width].y_draw), fdf);
+			if (pack->points[index].z < pack->points[index + pack->width].z)
+				ind2 = index + pack->width;
+			ft_bresenham(ind2, create_space(pack->points[index].x_draw, \ 
+			pack->points[index].y_draw, pack->points[index + \ 
+			pack->width].x_draw, pack->points[index + pack->width].y_draw), pack);
 		}
-
-
-
-		
 	}
 }
 

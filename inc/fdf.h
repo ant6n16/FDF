@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:53:36 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 13:39:11 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/24 14:07:25 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@
 # include <stdio.h>
 # include <math.h>
 # include <memory.h>
+
+typedef struct s_space
+{
+	int	x1;
+	int	y1;
+	int	x2;
+	int	y2;
+}	t_space;
+
 
 typedef struct s_img
 {
@@ -67,10 +76,15 @@ int			check_line_tam(char *aux);
 /* MANEJO DE LOS DATOS */
 void		draw_listpoints(t_data *points, int tam, int cont_lines);
 void		draw_single_point(t_data point);
-void		ft_bresenham(int x1, int y1, int x2, int y2);
 void		isometric(t_data	*points, int tam, int cont_lines);
 void		normalization(t_data *points, int tam, int cont_lines);
 void		fill_color(char *buf, t_data *points, int *index, int index_table);
+
+/* PARA DIBUJAR EN LA VENTANA */
+t_space	create_space(int x1, int y1, int x2, int y2);
+void	ft_bresenham(int location, t_space coords, t_packet *pack);
+void	ft_velazquez(t_packet *pack);
+
 
 /* SISTEMA */
 void		ft_leaks(void);
