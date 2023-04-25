@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:00:29 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 19:58:48 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:48:38 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	main(int argc, char **argv)
 		ft_error("Invalid number of arguments...", 0);
 	pack = provide_data(argv);
 	draw_listpoints(pack.points, pack.width, pack.height);
+
+	ft_printf("%d\n%d\n", pack.wind_w, pack.wind_h);
+
 	// pack.mlx = mlx_init(WIDTH, HEIGHT, "FDF PROJECT", true);
 	// if (!pack.mlx)
 	// 	ft_error("MLX cant initialize a window....", 1, pack.points);

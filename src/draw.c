@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:49:29 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 20:08:53 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/25 00:55:01 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@ void	isometric(t_data	*points, int tam, int cont_lines)
 	index = -1;
 	while (++index < tam * cont_lines)
 	{
-		// points[index].xiso = 0.866 * (index % tam) - 0.5 * (index / tam);
-		// points[index].yiso = 0.866 * (index / tam) + 0.5 * (index % tam) - \
-		// points[index].z;
-		points[index].xiso = (index % tam) - points[index].z;
-		points[index].yiso = (index / tam) - points[index].z;
+		points[index].xiso = 0.866 * (index % tam) - 0.5 * (index / tam);
+		points[index].yiso = 0.866 * (index / tam) + 0.5 * (index % tam) - \
+		points[index].z;
 	}
 }
 
-void	normalization(t_data *points, int tam, int cont_lines)
+void	normalization(t_packet *packet, int tam, int cont_lines)
 {
 	int	index;
 	int	min_x;
@@ -38,16 +36,16 @@ void	normalization(t_data *points, int tam, int cont_lines)
 	min_y = 0;
 	while (++index < tam * cont_lines)
 	{
-		if (points[index].xiso < min_x)
-			min_x = points[index].xiso;
-		if (points[index].yiso < min_y)
-			min_y = points[index].yiso;
+		if (packet->points[index].xiso < min_x)
+			min_x = packet->points[index].xiso;
+		if (packet->points[index].yiso < min_y)
+			min_y = packet->points[index].yiso;
 	}
 	index = -1;
 	while (++index < tam * cont_lines)
 	{
-		points[index].xiso = points[index].xiso - min_x;
-		points[index].yiso = points[index].yiso - min_y;
+		packet->points[index].xiso = packet->points[index].xiso - min_x;
+		packet->points[index].yiso = packet->points[index].yiso - min_y;
 	}
 }
 

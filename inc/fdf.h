@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:53:36 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/24 19:31:46 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:36:35 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@
 # include <stdio.h>
 # include <math.h>
 # include <memory.h>
+
+/* PROBANDO */
+typedef struct s_coords
+{
+	int				x;
+	int				y;
+	int				z;
+}					t_coords;
+
+/* HASTA AQUI */
+
 
 typedef struct s_space
 {
@@ -57,6 +68,11 @@ typedef struct s_packet
 	int			height;
 	int			wind_w;
 	int			wind_h;
+	int			zoom;
+	float		x_zoom;
+	float		z_zoom;
+	int			radians;
+	int			radians2;
 	mlx_image_t	*img;
 	mlx_image_t	*menu;
 	mlx_t		*mlx;
@@ -78,9 +94,16 @@ int			check_line_tam(char *aux);
 void		draw_listpoints(t_data *points, int tam, int cont_lines);
 void		draw_single_point(t_data point);
 void		isometric(t_data	*points, int tam, int cont_lines);
-void		normalization(t_data *points, int tam, int cont_lines);
+void		normalization(t_packet *packet, int tam, int cont_lines);
 void		calculate_window(t_packet *pack);
 void		fill_color(char *buf, t_data *points, int *index, int index_table);
+
+/* COORDENADAS Y ESPACIO */
+void		ft_checkzoom(t_packet	*packet);
+void		ft_views(t_packet	*pack);
+void		ft_set_coords(int i, t_coords c, t_packet *pack);
+void		ft_checkzoom(t_packet	*packet);
+
 
 /* PARA DIBUJAR EN LA VENTANA */
 t_space		create_space(int x1, int y1, int x2, int y2);
