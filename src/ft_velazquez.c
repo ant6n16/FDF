@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_velazquez.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:34:11 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/25 00:57:21 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:02:21 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,15 @@ void	ft_velazquez(t_packet *pack)
 	int	ind2;
 	int	tam;
 
-	tam = pack->img->width * pack->img->height;
+	tam = pack->width * pack->height;
 	ft_memset(pack->img->pixels, 0, tam * sizeof(int));
 	index = -1;
 	while(++index < tam)
 	{
+		ft_printf("%d\n", index);
 		ind2 = index;
 		if ((ind2 + 1) % pack->width != 0)
-		{ 
+		{
 			if (pack->points[index].z < pack->points[index + 1].z)
 				ind2 = index + 1;
 			ft_bresenham(ind2, create_space(pack->points[index].xiso, \

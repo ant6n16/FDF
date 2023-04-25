@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_space.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 00:29:51 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/25 14:59:32 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:19:01 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,33 @@ void	ft_views(t_packet *pack)
 
 	i = -1;
 
-	/* ¿POR QUÉ ESTOS VALORES? */
 	pack->zoom = 0;
 	pack->z_zoom = 0.4;
 	pack->x_zoom = 1;
 	pack->radians = 0;
 	pack->radians2 = 0;
 
-	/* ¿POR QUÉ CALCULA EL ZOOM ASÍ ? */
 	ft_checkzoom(pack);
 	while (++i < (pack->height * pack->width))
 	{
-
-		/* ¿DE DÓNDE SALEN ESTAS FÓRMULAS? */
 		coord.x = (pack->x_zoom * (i % pack->width) * pack->zoom) * \
 		cos(pack->radians) - ((i / pack->width) * pack->zoom) * \
 		sin(pack->radians);
+
 		coord.y = ((i / pack->width) * pack->zoom) * cos(pack->radians) \
 		* cos(pack->radians2) \
 		+ ((i % pack->width) * pack->zoom) * sin(pack->radians) \
 		- (pack->points[i].z * pack->zoom * pack->z_zoom) * sin(pack->radians2);
+		
 		coord.z = (pack->points[i].z * pack->zoom * pack->z_zoom) * \
 		cos(pack->radians2) \
 		+ ((i / pack->width) * pack->zoom) * sin(pack->radians2);
 
-		/* ¿DE DÓNDE SALEN LAS COORDENADAS ISOMÉTRICAS? */
+		// ft_printf("INDEX: %d\n", i);
+		// ft_printf("COORD X: %d\n", coord.x);
+		// ft_printf("COORD Y: %d\n", coord.y);
+		// ft_printf("COORD Z: %d\n\n", coord.z);
+
 		ft_set_coords(i, coord, pack);
 	}
 }

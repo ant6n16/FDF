@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:00:29 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/25 14:48:38 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:06:15 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_error("Invalid number of arguments...", 0);
 	pack = provide_data(argv);
-	draw_listpoints(pack.points, pack.width, pack.height);
 
+	// draw_listpoints(pack.points, pack.width, pack.height);
 	ft_printf("%d\n%d\n", pack.wind_w, pack.wind_h);
 
 	// pack.mlx = mlx_init(WIDTH, HEIGHT, "FDF PROJECT", true);
@@ -37,10 +37,8 @@ int	main(int argc, char **argv)
 	// if (!pack.img)
 	// 	ft_error("MLX cant create a new image...", 2, pack.points, pack.mlx);
 
-	// ft_printf("%d\n%d\n", pack.wind_w, pack.wind_h);
 	// ft_velazquez(&pack);
 	
-
 	// /* CENTRADO Y MENÚS, CREO */
 	// if (mlx_image_to_window(pack.mlx, pack.img, \
 	// ft_w_center(WIDTH, pack.img->width), ft_w_center(HEIGHT, pack.img->height)))
@@ -50,6 +48,8 @@ int	main(int argc, char **argv)
 	// mlx_loop(pack.mlx);
 	// mlx_delete_image(pack.mlx, pack.img);
 	// mlx_terminate(pack.mlx);
+
+
 	return (free(pack.points), atexit(ft_leaks), 0);
 }
 /* draw_listpoints(pack.points, pack.width, pack.height); */

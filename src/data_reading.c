@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_reading.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 21:07:25 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/25 14:28:06 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:05:15 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	split_buffer(char *buf, t_data *points)
 		pivot = index;
 		while (ft_isdigit(buf[index]) || buf[index] == '-')
 			index++;
-		aux = ft_substrmodif(buf, pivot, index - pivot);
+		aux = ft_substrmodif(buf, pivot, index - pivot + 1);
 		points[++index_table].z = ft_atoi(aux);
 		free(aux);
 		fill_color(buf, points, &index, index_table);
@@ -105,15 +105,10 @@ t_packet	provide_data(char **argv)
 	if (!points)
 		ft_error("Problems when allocating memory...", 2, image, buf);
 	split_buffer(buf, points);
-	
 	packet.points = points;
 	packet.width = image->width;
 	packet.height = image->height;
-	
-	// isometric(points, image->width, image->height);
-
 	ft_views(&packet);
-
 	normalization(&packet, image->width, image->height);
 	
 	calculate_window(&packet);
