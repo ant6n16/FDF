@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_space.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 00:29:51 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/25 18:19:01 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/26 00:00:15 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-void	ft_checkzoom(t_packet	*packet)
+void	ft_adjust_zoom(t_packet	*packet)
 {
-	packet->zoom = 0;
 	if (packet->zoom <= 0)
 	{
 		if ((HEIGHT / packet->height) > (WIDTH / packet->width))
@@ -24,46 +23,43 @@ void	ft_checkzoom(t_packet	*packet)
 	}
 }
 
-void	ft_set_coords(int i, t_coords c, t_packet *pack)
+void	fill_init_packet(t_packet *pack)
 {
-		pack->points[i].xiso = (0.866 * c.x - 0.5 * c.y);
-		pack->points[i].yiso = (0.866 * c.y + 0.5 * c.x - c.z);
+	pack->zoom = 0;
+	pack->zoom2 = 0.4;
+	pack->zoom1 = 1;
+	pack->angle1 = 0;
+	pack->angle2 = 0;
 }
 
-void	ft_views(t_packet *pack)
+void	ft_coordinates(t_packet *pack)
 {
-	int			i;
-	t_coords	coord;
+	int			index;
+	t_coords	c;
 
-	i = -1;
-
-	pack->zoom = 0;
-	pack->z_zoom = 0.4;
-	pack->x_zoom = 1;
-	pack->radians = 0;
-	pack->radians2 = 0;
-
-	ft_checkzoom(pack);
-	while (++i < (pack->height * pack->width))
+	index = -1;
+	fill_init_packet(pack);
+	ft_adjust_zoom(pack);
+	while (++index < (pack->height * pack->width))
 	{
-		coord.x = (pack->x_zoom * (i % pack->width) * pack->zoom) * \
-		cos(pack->radians) - ((i / pack->width) * pack->zoom) * \
-		sin(pack->radians);
-
-		coord.y = ((i / pack->width) * pack->zoom) * cos(pack->radians) \
-		* cos(pack->radians2) \
-		+ ((i % pack->width) * pack->zoom) * sin(pack->radians) \
-		- (pack->points[i].z * pack->zoom * pack->z_zoom) * sin(pack->radians2);
-		
-		coord.z = (pack->points[i].z * pack->zoom * pack->z_zoom) * \
-		cos(pack->radians2) \
-		+ ((i / pack->width) * pack->zoom) * sin(pack->radians2);
-
-		// ft_printf("INDEX: %d\n", i);
-		// ft_printf("COORD X: %d\n", coord.x);
-		// ft_printf("COORD Y: %d\n", coord.y);
-		// ft_printf("COORD Z: %d\n\n", coord.z);
-
-		ft_set_coords(i, coord, pack);
+		c.x = (pack->zoom1 * (index % pack->width) * pack->zoom) * \
+		cos(pack->angle1) - ((index / pack->width) * pack->zoom) * \
+		sin(pack->angle1);
+		c.y = ((index / pack->width) * pack->zoom) * cos(pack->angle1) \
+		* cos(pack->angle2) \
+		+ ((index % pack->width) * pack->zoom) * sin(pack->angle1) \
+		- (pack->points[index].z * pack->zoom * pack->zoom2) * \
+		sin(pack->angle2);
+		c.z = (pack->points[index].z * pack->zoom * pack->zoom2) * \
+		cos(pack->angle2) \
+		+ ((index / pack->width) * pack->zoom) * sin(pack->angle2);
+		pack->points[index].xiso = (cos(M_PI / 6) * c.x - sin(M_PI / 6) * c.y);
+		pack->points[index].yiso = (cos(M_PI / 6) * c.y + \
+		sin(M_PI / 6) * c.x - c.z);
 	}
 }
+
+/* ft_printf("INDEX: %d\n", i);
+ft_printf("COORD X: %d\n", coord.x);
+ft_printf("COORD Y: %d\n", coord.y);
+ft_printf("COORD Z: %d\n\n", coord.z); */

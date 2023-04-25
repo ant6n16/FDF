@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:53:36 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/25 14:36:35 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/26 01:05:38 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # define WIDTH 1920
 # define HEIGHT 1024
+# define BAR_WIDTH 300
+# define BAR_HEIGHT HEIGHT
+# define LINE 30
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -25,16 +28,24 @@
 # include <math.h>
 # include <memory.h>
 
-/* PROBANDO */
+typedef struct s_bresenham
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+	int	x;
+	int	y;
+}	t_bresenham;
+
 typedef struct s_coords
 {
 	int				x;
 	int				y;
 	int				z;
 }					t_coords;
-
-/* HASTA AQUI */
-
 
 typedef struct s_space
 {
@@ -69,12 +80,12 @@ typedef struct s_packet
 	int			wind_w;
 	int			wind_h;
 	int			zoom;
-	float		x_zoom;
-	float		z_zoom;
-	int			radians;
-	int			radians2;
+	float		zoom1;
+	float		zoom2;
+	int			angle1;
+	int			angle2;
 	mlx_image_t	*img;
-	mlx_image_t	*menu;
+	mlx_image_t	*bar;
 	mlx_t		*mlx;
 }	t_packet;
 
@@ -93,22 +104,27 @@ int			check_line_tam(char *aux);
 /* MANEJO DE LOS DATOS */
 void		draw_listpoints(t_data *points, int tam, int cont_lines);
 void		draw_single_point(t_data point);
-void		isometric(t_data	*points, int tam, int cont_lines);
 void		normalization(t_packet *packet, int tam, int cont_lines);
 void		calculate_window(t_packet *pack);
 void		fill_color(char *buf, t_data *points, int *index, int index_table);
 
 /* COORDENADAS Y ESPACIO */
-void		ft_checkzoom(t_packet	*packet);
-void		ft_views(t_packet	*pack);
-void		ft_set_coords(int i, t_coords c, t_packet *pack);
-void		ft_checkzoom(t_packet	*packet);
+void		ft_adjust_zoom(t_packet	*packet);
+void		ft_coordinates(t_packet	*pack);
+void		fill_init_packet(t_packet *pack);
 
 
 /* PARA DIBUJAR EN LA VENTANA */
 t_space		create_space(int x1, int y1, int x2, int y2);
 void		ft_bresenham(int location, t_space coords, t_packet *pack);
+void		bresenham_aux(t_bresenham	*brshm);
+void		ft_putrgba(int i, t_packet *pack, int j);		
 void		ft_velazquez(t_packet *pack);
+int32_t		ft_w_center(const uint32_t n1, const uint32_t n2);
+int			menu_views(t_packet *pack, int i);
+int			menu_instructions(t_packet *pack, int i);
+void		ft_bar(t_packet *pack);
+
 
 /* SISTEMA */
 void		ft_leaks(void);
