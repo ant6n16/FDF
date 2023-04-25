@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:34:11 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/25 18:02:21 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:18:24 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	ft_velazquez(t_packet *pack)
 	index = -1;
 	while(++index < tam)
 	{
-		ft_printf("%d\n", index);
 		ind2 = index;
 		if ((ind2 + 1) % pack->width != 0)
 		{
