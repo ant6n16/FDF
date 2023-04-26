@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bar.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 00:44:59 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/26 00:56:26 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:37:49 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,24 @@
 int	menu_instructions(t_packet *pack, int i)
 {
 	mlx_put_string(pack->mlx, "CONTROLS", 20, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[Arrows]: Move", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[KP4][KP6][KP2][KP8]: Rotate", 5, LINE * i++);
-	mlx_put_string(pack->mlx, "[KP+][KP-]: Zoom", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[W][S]: Modify height", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[A][D]: Modify width", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[ESC]: Close the window", 5, 10 + LINE * i++);
+	mlx_put_string(pack->mlx, "Move using arrows", 5, 10 + LINE * i++);
+	mlx_put_string(pack->mlx, "Rotate using A,W,D,X", 5, LINE * i++);
+	mlx_put_string(pack->mlx, "Change Zoom using + or -", 5, 10 + LINE * i++);
+	mlx_put_string(pack->mlx, "Close the window using ESC", 5, 10 + LINE * i++);
 	i++;
-	mlx_put_string(pack->mlx, "---MOUSE CONTROLS---", 25, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[Cursor+LeftC]: Move", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[Cursor+RightC]: Rotate", 5, LINE * i++);
-	mlx_put_string(pack->mlx, "[SCROLL +/-]: Zoom", 5, 10 + LINE * i++);
-	i++;
-	mlx_put_string(pack->mlx, "---COLORS CONTROL---", 20, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[0]: Earth", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[1]: Default", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[2]: White", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[2]: Black", 5, 10 + LINE * i++);
+	mlx_put_string(pack->mlx, "---COLORS MAP---", 20, 10 + LINE * i++);
+	mlx_put_string(pack->mlx, "0 -> Default", 5, 10 + LINE * i++);
+	mlx_put_string(pack->mlx, "1 -> Earth", 5, 10 + LINE * i++);
 	i++;
 	return (i);
 }
 
 int	menu_views(t_packet *pack, int i)
 {
-	mlx_put_string(pack->mlx, "---VIEWS CONTROL---", 20, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[I]: Isometric", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[C]: Cavalier", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[F]: Front view", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "[T]: Top view", 5, 10 + LINE * i++);
+	mlx_put_string(pack->mlx, "---PERSPECTIVE---", 20, 10 + LINE * i++);
+	mlx_put_string(pack->mlx, "I -> Isometric", 5, 10 + LINE * i++);
+	mlx_put_string(pack->mlx, "F -> Front view", 5, 10 + LINE * i++);
+	mlx_put_string(pack->mlx, "C -> Cavalier", 5, 10 + LINE * i++);
 	return (i);
 }
 

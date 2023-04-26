@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+         #
+#    By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 13:19:05 by lumorale          #+#    #+#              #
-#    Updated: 2023/04/26 00:45:54 by antdelga         ###   ########.fr        #
+#    Updated: 2023/04/26 18:10:01 by antdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,8 @@ LIBFT = libft/libft.a
 
 MLX_DIR = MLX42
 LIBMLXL = libmlx42.a
-LIBMLX = $(MLX_DIR)/libmlx42.a -ldl -lglfw3 -pthread -lm
-INC_MLX = -I$(MLX_DIR)/include/MLX42 -Iinclude -lglfw3 -L"/Users/$$USER/.brew/opt/glfw/lib/"
+LIBMLX = $(MLX_DIR)/libmlx42.a -ldl -lglfw -pthread -lm
+INC_MLX = -I$(MLX_DIR)/include/MLX42 -Iinclude -lglfw -L"/Users/$$USER/.brew/opt/glfw/lib/"
 
 INC = -Iinclude $(INC_LFT) $(INC_FTP) $(INC_GNL) $(INC_MLX)
 

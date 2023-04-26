@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:00:29 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/26 01:06:03 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:31:17 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,18 @@ int	main(int argc, char **argv)
 
 /* ft_printf("%d\n%d\n\n", pack.wind_w, pack.wind_h);
 draw_listpoints(pack.points, pack.width, pack.height); */
+
+
+/*  REQUISITOS  */
+
+/*
+1.- SE TIENE QUE CERRAR LA VENTANA AL PULSAR ESC
+2.- SE TIENE QUE CERRAR LA VENTANA AL DARLE A LA X DE LA VENTANA
+3.- QUE FUNCIONE DE FORMA FLUIDA, AL MINIMIZAR O CERRAR Y AL MOVER EL OBJETO
+
+BONUS 1.- PROYECCIÓN EXTRA (SOLO 1)
+BONUS 2.- ACERCAR Y ALEJAR (CON TECLADO SOLO)
+BONUS 3.- MOVER EL OBJETO DE DENTRO
+BONUS 4.- ROTAR EL OBJETO DE DENTRO
+BONUS 5.- MENÚ
+*/
