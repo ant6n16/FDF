@@ -6,7 +6,7 @@
 #    By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 13:19:05 by lumorale          #+#    #+#              #
-#    Updated: 2023/04/26 18:10:01 by antdelga         ###   ########.fr        #
+#    Updated: 2023/05/01 19:28:01 by antdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS			=	src/ft_error.c \
 					src/ft_velazquez.c \
 					src/ft_space.c \
 					src/bar.c \
+					src/ft_hooks.c \
 					src/main.c \
 					
 

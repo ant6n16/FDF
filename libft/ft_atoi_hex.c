@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 21:30:28 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/14 21:31:05 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:24:00 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int	ft_atoi_hex(char *hex)
 		else if (hex[i] >= 'A' && hex[i] <= 'F')
 			digit_value = hex[i] - 'A' + 10;
 		else
-		{
-			ft_printf("Error: %s is not a valid hexadecimal number\n", hex);
 			return (0);
-		}
 		dec = dec * 16 + digit_value;
 	}
 	return (dec);

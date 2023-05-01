@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_reading.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 21:07:25 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/25 23:55:53 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:57:00 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ t_packet	provide_data(char **argv)
 	packet.points = points;
 	packet.width = image->width;
 	packet.height = image->height;
+	fill_init_packet(&packet);
 	ft_coordinates(&packet);
 	normalization(&packet, image->width, image->height);
 	calculate_window(&packet);

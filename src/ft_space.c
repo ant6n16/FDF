@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_space.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 00:29:51 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/26 00:00:15 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:41:58 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,28 @@ void	fill_init_packet(t_packet *pack)
 	pack->zoom1 = 1;
 	pack->angle1 = 0;
 	pack->angle2 = 0;
+	pack->viewcoord = 0;
+}
+
+void	ft_viewcoord(t_packet *pack, t_coords c, int index)
+{
+	if (pack->viewcoord == 0)
+	{
+		pack->points[index].xiso = (cos(M_PI / 6) * c.x - sin(M_PI / 6) * c.y);
+		pack->points[index].yiso = (cos(M_PI / 6) * c.y + \
+		sin(M_PI / 6) * c.x - c.z);
+	}
+	else if (pack->viewcoord == 1)
+	{
+		pack->points[index].xiso = (c.x - cos(M_PI / 4) * c.z) - cos(M_PI / 4) * \
+		(c.y - cos(M_PI / 4) * c.z);
+		pack->points[index].yiso = (c.y - cos(M_PI / 4) * c.z);
+	}
+	else if (pack->viewcoord == 2)
+	{
+		pack->points[index].xiso = c.x;
+		pack->points[index].yiso = c.y;
+	}
 }
 
 void	ft_coordinates(t_packet *pack)
@@ -38,7 +60,6 @@ void	ft_coordinates(t_packet *pack)
 	t_coords	c;
 
 	index = -1;
-	fill_init_packet(pack);
 	ft_adjust_zoom(pack);
 	while (++index < (pack->height * pack->width))
 	{
@@ -53,13 +74,6 @@ void	ft_coordinates(t_packet *pack)
 		c.z = (pack->points[index].z * pack->zoom * pack->zoom2) * \
 		cos(pack->angle2) \
 		+ ((index / pack->width) * pack->zoom) * sin(pack->angle2);
-		pack->points[index].xiso = (cos(M_PI / 6) * c.x - sin(M_PI / 6) * c.y);
-		pack->points[index].yiso = (cos(M_PI / 6) * c.y + \
-		sin(M_PI / 6) * c.x - c.z);
+		ft_viewcoord(pack, c, index);
 	}
 }
-
-/* ft_printf("INDEX: %d\n", i);
-ft_printf("COORD X: %d\n", coord.x);
-ft_printf("COORD Y: %d\n", coord.y);
-ft_printf("COORD Z: %d\n\n", coord.z); */

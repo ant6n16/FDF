@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:49:29 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/26 00:01:49 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:42:47 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	calculate_window(t_packet *pack)
 
 	while (++index < pack->width * pack->height)
 	{
-		if (pack->wind_w < pack->points[index].xiso)
+		if (pack->wind_w <= pack->points[index].xiso)
 			pack->wind_w = pack->points[index].xiso;
-		if (pack->wind_h < pack->points[index].yiso)
+		if (pack->wind_h <= pack->points[index].yiso)
 			pack->wind_h = pack->points[index].yiso;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:53:36 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/26 01:05:38 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:04:12 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_packet
 	float		zoom2;
 	int			angle1;
 	int			angle2;
+	int			viewcoord;
 	mlx_image_t	*img;
 	mlx_image_t	*bar;
 	mlx_t		*mlx;
@@ -121,10 +122,12 @@ void		bresenham_aux(t_bresenham	*brshm);
 void		ft_putrgba(int i, t_packet *pack, int j);		
 void		ft_velazquez(t_packet *pack);
 int32_t		ft_w_center(const uint32_t n1, const uint32_t n2);
-int			menu_views(t_packet *pack, int i);
-int			menu_instructions(t_packet *pack, int i);
+void		menu_instructions(t_packet *pack, int i);
 void		ft_bar(t_packet *pack);
 
+/* HOOKS */
+void		remake(int reset, t_packet *pack);
+void		keyboard_hooks(void *param);
 
 /* SISTEMA */
 void		ft_leaks(void);

@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:00:29 by antdelga          #+#    #+#             */
-/*   Updated: 2023/04/26 18:31:17 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:43:32 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ int	main(int argc, char **argv)
 	ft_w_center(WIDTH, pack.img->width), ft_w_center(HEIGHT, pack.img->height)))
 		ft_error("Cant not show the image in the window...", 1, pack.points);
 	ft_bar(&pack);
-
-	// mlx_loop_hook(pack.mlx, &keyboard_hooks, (void *)&fdf);
-	// mlx_scroll_hook(pack.mlx, &scroll_hook, (void *)&fdf);
-
+	mlx_loop_hook(pack.mlx, &keyboard_hooks, (void *) &pack);
 	mlx_loop(pack.mlx);
 	mlx_delete_image(pack.mlx, pack.img);
 	mlx_terminate(pack.mlx);
@@ -42,18 +39,3 @@ int	main(int argc, char **argv)
 
 /* ft_printf("%d\n%d\n\n", pack.wind_w, pack.wind_h);
 draw_listpoints(pack.points, pack.width, pack.height); */
-
-
-/*  REQUISITOS  */
-
-/*
-1.- SE TIENE QUE CERRAR LA VENTANA AL PULSAR ESC
-2.- SE TIENE QUE CERRAR LA VENTANA AL DARLE A LA X DE LA VENTANA
-3.- QUE FUNCIONE DE FORMA FLUIDA, AL MINIMIZAR O CERRAR Y AL MOVER EL OBJETO
-
-BONUS 1.- PROYECCIÓN EXTRA (SOLO 1)
-BONUS 2.- ACERCAR Y ALEJAR (CON TECLADO SOLO)
-BONUS 3.- MOVER EL OBJETO DE DENTRO
-BONUS 4.- ROTAR EL OBJETO DE DENTRO
-BONUS 5.- MENÚ
-*/
