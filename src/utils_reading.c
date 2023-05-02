@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:05:55 by antdelga          #+#    #+#             */
-/*   Updated: 2023/05/01 19:23:28 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:11:45 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,24 +66,17 @@ void	get_color_new(char *buf, int *index, t_data *point, char id)
 
 void	fill_color(char *buf, t_data *points, int *index, int index_table)
 {
-	points[index_table].r = 125;
-	points[index_table].g = 200;
-	points[index_table].b = 106;
-	points[index_table].t = 255;
+	initialize_colors(points, index_table);
 	if (buf[*index] == ',' && buf[*index + 1] == '0' && buf[*index + 2] == 'x')
 	{
 		*index += 3;
 		if (ft_ishex(buf[*index]) && ft_ishex(buf[*index + 1]) && \
 		buf[*index + 1] == ' ')
 			get_color_new(buf, index, &points[index_table], 'b');
-
 		else if (ft_ishex(buf[*index]) && ft_ishex(buf[*index + 1]) && \
-		 ft_ishex(buf[*index + 2]) && ft_ishex(buf[*index + 3]) && \
-		  buf[*index + 4] == ' ')
-		{
-			get_color_new(buf, index, &points[index_table], 'g');
-			get_color_new(buf, index, &points[index_table], 'b');
-		}
+		ft_ishex(buf[*index + 2]) && ft_ishex(buf[*index + 3]) && \
+		buf[*index + 4] == ' ')
+			first_part(buf, points, index, index_table);
 		else
 		{
 			if (ft_ishex(buf[*index]) && ft_ishex(buf[*index + 1]))

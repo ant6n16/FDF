@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 00:44:59 by antdelga          #+#    #+#             */
-/*   Updated: 2023/05/01 20:03:49 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/02 20:43:49 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ void	menu_instructions(t_packet *pack, int i)
 	mlx_put_string(pack->mlx, "CONTROLS", 20, 10 + LINE * i++);
 	mlx_put_string(pack->mlx, "Move using arrows", 5, 10 + LINE * i++);
 	mlx_put_string(pack->mlx, "Rotate using A,W,D,X", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "Change Zoom using + or -", 5, 10 + LINE * i++);
 	mlx_put_string(pack->mlx, "Close the window using ESC", 5, 10 + LINE * i++);
 	i = 10 * i;
 	mlx_put_string(pack->mlx, "---PERSPECTIVE---", 20, 10 + LINE * i++);
 	mlx_put_string(pack->mlx, "I -> Isometric", 5, 10 + LINE * i++);
-	mlx_put_string(pack->mlx, "F -> Front view", 5, 10 + LINE * i++);
 	mlx_put_string(pack->mlx, "C -> Cavalier", 5, 10 + LINE * i++);
 }
 

@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:00:29 by antdelga          #+#    #+#             */
-/*   Updated: 2023/05/01 20:43:32 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/02 20:01:38 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,9 @@ int	main(int argc, char **argv)
 	if (mlx_image_to_window(pack.mlx, pack.img, \
 	ft_w_center(WIDTH, pack.img->width), ft_w_center(HEIGHT, pack.img->height)))
 		ft_error("Cant not show the image in the window...", 1, pack.points);
-	ft_bar(&pack);
 	mlx_loop_hook(pack.mlx, &keyboard_hooks, (void *) &pack);
 	mlx_loop(pack.mlx);
 	mlx_delete_image(pack.mlx, pack.img);
 	mlx_terminate(pack.mlx);
-	return (free(pack.points), atexit(ft_leaks), 0);
+	return (free(pack.points), 0);
 }
-
-/* ft_printf("%d\n%d\n\n", pack.wind_w, pack.wind_h);
-draw_listpoints(pack.points, pack.width, pack.height); */

@@ -5,12 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/20 13:19:05 by lumorale          #+#    #+#              #
-#    Updated: 2023/05/01 19:28:01 by antdelga         ###   ########.fr        #
+#    Created: 2023/03/20 13:19:05 by antdelga          #+#    #+#              #
+#    Updated: 2023/05/02 20:47:06 by antdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	fdf
+NAME_B			=   fdf_bonus
 
 CC				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra
@@ -24,9 +25,21 @@ SRCS			=	src/ft_error.c \
 					src/data_reading.c \
 					src/ft_velazquez.c \
 					src/ft_space.c \
-					src/bar.c \
 					src/ft_hooks.c \
+					src/utils_colors.c \
 					src/main.c \
+					
+SRCS_B		=	src/ft_error.c \
+					src/utils.c \
+					src/utils_reading.c \
+					src/draw.c \
+					src/data_reading.c \
+					src/ft_velazquez.c \
+					src/ft_space.c \
+					src/bar.c \
+					src/ft_hooks_bonus.c \
+					src/utils_colors.c \
+					src/main_bonus.c \
 					
 
 #		COLORS		#
@@ -66,8 +79,15 @@ $(NAME):		$(OBJS)
 				@$(CC) $(FLAGS) $(INC) $(LIBMLX) $(LIBFT) $(OBJS) -o $(NAME)
 				@echo "\n$(CYELLOW)$(NAME) -> $(CGREEN) compiled$(CRESET)"
 
+bonus:			$(LIBFT) $(LIBMLXL) $(NAME_B)
+
+$(NAME_B):		$(OBJS_B)
+				@$(CC) $(FLAGS) $(INC) $(LIBMLX) $(LIBFT) $(OBJS_B) -o $(NAME_B)
+				@echo "\n$(CYELLOW)$(NAME_B) -> $(CGREEN) compiled$(CRESET)"
+
 clean:
 				@$(RM) $(OBJS)
+				@$(RM) $(OBJS_B)
 				@make -C ./libft clean
 				@make -C ./MLX42
 				@echo "${CYELLOW}${NAME} $(CGREEN) -> ${CRED} objects deleted.${CRESET}"

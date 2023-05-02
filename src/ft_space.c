@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 00:29:51 by antdelga          #+#    #+#             */
-/*   Updated: 2023/05/01 20:41:58 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:52:11 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	ft_viewcoord(t_packet *pack, t_coords c, int index)
 	}
 	else if (pack->viewcoord == 1)
 	{
-		pack->points[index].xiso = (c.x - cos(M_PI / 4) * c.z) - cos(M_PI / 4) * \
-		(c.y - cos(M_PI / 4) * c.z);
+		pack->points[index].xiso = (c.x - cos(M_PI / 4) * c.z) \
+		- cos(M_PI / 4) * (c.y - cos(M_PI / 4) * c.z);
 		pack->points[index].yiso = (c.y - cos(M_PI / 4) * c.z);
 	}
 	else if (pack->viewcoord == 2)

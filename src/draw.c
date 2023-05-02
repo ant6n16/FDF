@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:49:29 by antdelga          #+#    #+#             */
-/*   Updated: 2023/05/01 20:42:47 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:51:32 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	calculate_window(t_packet *pack)
 	index = -1;
 	pack->wind_w = 0;
 	pack->wind_h = 0;
-
 	while (++index < pack->width * pack->height)
 	{
 		if (pack->wind_w <= pack->points[index].xiso)

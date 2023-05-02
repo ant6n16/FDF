@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:53:36 by antdelga          #+#    #+#             */
-/*   Updated: 2023/05/01 20:04:12 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/05/02 20:44:40 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,32 +90,33 @@ typedef struct s_packet
 	mlx_t		*mlx;
 }	t_packet;
 
-/* LEER LOS DATOS */
+/* READ DATA */
 char		*ft_substrmodif(char *file, int start, int size);
 void		get_data(int fd, char **buf, t_img *image);
 t_packet	provide_data(char **argv);
 void		read_data(char **argv, char **buf, t_img *image);
 void		split_buffer(char *buf, t_data *points);
 
-/* UTILS PARA LECTURA */
+/* UTILS FOR READING */
 char		*freestrjoin(char *buf, char *aux);
 void		get_color_new(char *buf, int *index, t_data *point, char id);
 int			check_line_tam(char *aux);
 
-/* MANEJO DE LOS DATOS */
+/* MANAGE DATA */
 void		draw_listpoints(t_data *points, int tam, int cont_lines);
 void		draw_single_point(t_data point);
 void		normalization(t_packet *packet, int tam, int cont_lines);
 void		calculate_window(t_packet *pack);
 void		fill_color(char *buf, t_data *points, int *index, int index_table);
+void		first_part(char *buf, t_data *points, int *index, int index_table);
+void		initialize_colors(t_data *points, int index_table);
 
-/* COORDENADAS Y ESPACIO */
+/* SPACE AND COORDINATES */
 void		ft_adjust_zoom(t_packet	*packet);
 void		ft_coordinates(t_packet	*pack);
 void		fill_init_packet(t_packet *pack);
 
-
-/* PARA DIBUJAR EN LA VENTANA */
+/* DRAW IN THE WINDOW */
 t_space		create_space(int x1, int y1, int x2, int y2);
 void		ft_bresenham(int location, t_space coords, t_packet *pack);
 void		bresenham_aux(t_bresenham	*brshm);
@@ -128,8 +129,9 @@ void		ft_bar(t_packet *pack);
 /* HOOKS */
 void		remake(int reset, t_packet *pack);
 void		keyboard_hooks(void *param);
+void		keyboard_hooks_bonus(void *param);
 
-/* SISTEMA */
+/* SYSTEM */
 void		ft_leaks(void);
 void		ft_error(char *prompt, int num_args, ...);
 
